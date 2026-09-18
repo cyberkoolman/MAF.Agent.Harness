@@ -65,6 +65,85 @@ Common gaps include:
 | Progress is difficult to audit | OpenTelemetry traces and structured task state |
 | A persuasive answer may be mistaken for success | Domain-owned outcome verification |
 
+## Agent workflow versus Agent Harness
+
+An **agent workflow** and an **Agent Harness** solve different problems. They are usually
+complementary rather than competing approaches.
+
+- An **agent workflow** defines the task logic: which steps, agents, decisions, and
+  handoffs occur, and in what order.
+- An **Agent Harness** provides the managed execution environment in which an agent can
+  perform that work over time.
+
+In short:
+
+> A workflow describes **what work should happen and how it is coordinated**.
+> A harness provides **the runtime capabilities, controls, and lifecycle for executing
+> agent work reliably**.
+
+| Dimension | Agent workflow | Agent Harness |
+|---|---|---|
+| **Primary purpose** | Orchestrate a business or task process | Operate an agent safely and consistently |
+| **Main question** | “What happens next?” | “How does this agent execute, persist, use tools, and remain controlled?” |
+| **Typical structure** | Sequence, graph, router, handoff, branch, loop, or approval step | Runtime pipeline around model calls, tools, state, policy, and telemetry |
+| **Control style** | Often application-defined and explicit | Provides reusable managed capabilities to the agent |
+| **State** | Workflow state usually tracks steps and outputs | Session state can include conversation history, memory, todos, modes, and delegated tasks |
+| **Tools** | A workflow may call tools directly or ask agents to call them | The harness manages tool exposure, invocation, approval, and execution loops |
+| **Delegation** | Defines when work moves to another agent or step | Supplies the mechanisms and lifecycle for running and tracking delegated agents |
+| **Context** | Passes selected data between workflow steps | Preserves and compacts an agent's evolving context across many interactions |
+| **Limits and policy** | Must be designed into each workflow or surrounding application | Can provide standard iteration limits, approvals, scopes, and execution policy |
+| **Observability** | Tracks workflow steps and transitions | Tracks model calls, tool calls, sessions, delegation, and runtime behavior |
+| **Completion** | Reaches the workflow's terminal step | Reaches a managed agent or task state; domain verification must still confirm the outcome |
+| **Best fit** | Repeatable processes with known stages and routing | Long-running, tool-using, stateful, or delegated agent execution |
+
+### Example
+
+A customer-support workflow might define:
+
+```text
+Receive request -> classify issue -> retrieve account context
+                -> draft resolution -> request approval -> respond
+```
+
+The Agent Harness can support the agent within those steps by preserving its session,
+providing approved retrieval and communication tools, loading support skills, tracking
+delegated research, enforcing limits, and recording telemetry.
+
+In this repository's software-repair example, the workflow is approximately:
+
+```text
+Inspect problem -> delegate frontend and backend work
+                -> add regression coverage -> update documentation
+                -> run independent acceptance -> correct or complete
+```
+
+The harness does not replace that sequence. It gives Phoenix the state, skills, tools,
+delegation, bounded loops, approvals, memory, and telemetry needed to execute its part of
+the sequence.
+
+### When a workflow may be enough
+
+A simple, deterministic process may only need a workflow. For example, an application that
+always retrieves one record, applies a fixed transformation, and sends the result may not
+need a long-lived agent runtime.
+
+### When a harness becomes valuable
+
+A harness becomes more valuable when an agent must:
+
+- reason and act across many model turns;
+- retain or compact evolving context;
+- choose among multiple tools;
+- delegate and monitor parallel work;
+- recover from incomplete results;
+- follow reusable skills and approval policy;
+- operate within hard limits; or
+- provide detailed runtime telemetry.
+
+Many production systems use both: the workflow provides predictable business
+orchestration, while the harness provides dependable agent execution inside one or more
+workflow steps.
+
 ## Example: what the harness does in this repository
 
 The concepts above are domain-neutral. This repository applies them to one specific
@@ -164,6 +243,7 @@ These terms are related but not interchangeable:
 | **Model** | Produces reasoning and language or multimodal responses |
 | **Agent** | A model configured with instructions, identity, and tools |
 | **Agent framework** | APIs and abstractions used to build agents and workflows |
+| **Agent workflow** | Application-defined orchestration of steps, decisions, agents, handoffs, and outcomes |
 | **Agent Harness** | The managed runtime pipeline around an agent: state, tools, skills, delegation, policy, limits, and telemetry |
 | **Outcome verification** | Domain-specific proof that the agent's result satisfies the real requirement |
 
