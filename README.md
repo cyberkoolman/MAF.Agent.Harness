@@ -21,6 +21,8 @@ MAF.Agent.Harness/
 |-- scripts/
 |   `-- Reset-SampleToBuggy.ps1
 `-- docs/
+    |-- Agent.Harness.md         What an Agent Harness is and why it matters
+    |-- Computer.Use.md          Computer-use models and their benefits
     |-- Agent-Harness.md         Client-facing architecture and lessons
     |-- code-fix.md              Exact repair mechanics and disclosure
     `-- SETUP.md                 Installation and demonstration guide
@@ -96,6 +98,8 @@ For the complete startup and demo sequence, see [Setup and Demo Guide](docs/SETU
 
 ## Documentation
 
+- [What Is an Agent Harness?](docs/Agent.Harness.md)
+- [What Is a Computer-Use Model?](docs/Computer.Use.md)
 - [Agent Harness in Action](docs/Agent-Harness.md)
 - [How the Code Repair Actually Works](docs/code-fix.md)
 - [Setup and Demo Guide](docs/SETUP.md)
