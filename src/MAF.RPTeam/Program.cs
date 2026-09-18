@@ -20,7 +20,7 @@ using Microsoft.Extensions.Configuration;
 // The MAF-specific parts of this file are marked [MAF]. There are only three:
 // building an IChatClient, wrapping it as agents, and running one. Everything
 // the agent then does between model calls comes from the harness pipeline.
-// See docs/Agent-Harness.md.
+// See docs/Code-Repair-Case-Study.md.
 // ---------------------------------------------------------------------------
 
 // Four sources, lowest precedence first:

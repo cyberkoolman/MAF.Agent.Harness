@@ -1,4 +1,4 @@
-# Agent Harness in Action
+# Agent Harness Code-Repair Case Study
 
 ## From AI code repair to verified autonomous engineering
 

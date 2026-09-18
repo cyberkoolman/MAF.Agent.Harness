@@ -226,6 +226,6 @@ approval, deterministic validation, and human accountability are essential.
 ## Related documents
 
 - [What Is an Agent Harness?](Agent.Harness.md)
-- [Agent Harness in Action](Agent-Harness.md)
+- [Agent Harness Code-Repair Case Study](Code-Repair-Case-Study.md)
 - [How the Code Repair Actually Works](code-fix.md)
 - [Setup and Demo Guide](SETUP.md)

@@ -470,5 +470,5 @@ system.
 
 ## Related documentation
 
-- [Agent Harness in Action](Agent-Harness.md)
+- [Agent Harness Code-Repair Case Study](Code-Repair-Case-Study.md)
 - [Setup and demo guide](SETUP.md)

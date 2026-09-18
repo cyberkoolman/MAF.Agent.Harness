@@ -283,7 +283,7 @@ independent verification can still accept the wrong outcome.
 
 ## Related documents
 
-- [Agent Harness in Action](Agent-Harness.md)
+- [Agent Harness Code-Repair Case Study](Code-Repair-Case-Study.md)
 - [What Is a Computer-Use Model?](Computer.Use.md)
 - [How the Code Repair Actually Works](code-fix.md)
 - [Setup and Demo Guide](SETUP.md)
