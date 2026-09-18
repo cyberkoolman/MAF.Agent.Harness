@@ -39,6 +39,8 @@ definition of completion. The Agent Harness supplies those operational capabilit
               Verified result or correction
 ```
 
+**Microsoft Learn reference:** [Agent Harness](https://learn.microsoft.com/en-us/agent-framework/concepts/harness)
+
 The important distinction is:
 
 > The model decides what may need to happen. The harness manages how work happens.
@@ -85,6 +87,9 @@ In short:
 
 ![Venn diagram comparing agent workflow, shared concerns, and Agent Harness responsibilities](images/workflow-vs-agent-harness-venn.svg)
 
+**Microsoft Learn references:** [Workflow concepts](https://learn.microsoft.com/en-us/agent-framework/concepts/workflows/)
+and [Agent Harness](https://learn.microsoft.com/en-us/agent-framework/concepts/harness)
+
 | Workflow only | Intersection: both participate | Harness only |
 |---|---|---|
 | Defines the business or task sequence | Agents perform tasks within a coordinated process | Preserves the agent's conversation and session history |
@@ -123,6 +128,8 @@ Receive request -> classify issue -> retrieve account context
                 -> draft resolution -> request approval -> respond
 ```
 
+**Microsoft Learn reference:** [Workflow concepts](https://learn.microsoft.com/en-us/agent-framework/concepts/workflows/)
+
 The Agent Harness can support the agent within those steps by preserving its session,
 providing approved retrieval and communication tools, loading support skills, tracking
 delegated research, enforcing limits, and recording telemetry.
@@ -134,6 +141,9 @@ Inspect problem -> delegate frontend and backend work
                 -> add regression coverage -> update documentation
                 -> run independent acceptance -> correct or complete
 ```
+
+**Microsoft Learn references:** [Workflow concepts](https://learn.microsoft.com/en-us/agent-framework/concepts/workflows/)
+and [Agent Harness](https://learn.microsoft.com/en-us/agent-framework/concepts/harness)
 
 The harness does not replace that sequence. It gives Phoenix the state, skills, tools,
 delegation, bounded loops, approvals, memory, and telemetry needed to execute its part of
@@ -173,6 +183,9 @@ Phoenix is the coordinator and is created as a Microsoft Agent Framework
 ```csharp
 var phoenix = chatClient.AsHarnessAgent(phoenixOptions);
 ```
+
+**Microsoft Learn references:** [Create a harness agent with `AsHarnessAgent`](https://learn.microsoft.com/en-us/agent-framework/get-started/harness)
+and [Agent Harness concepts and architecture](https://learn.microsoft.com/en-us/agent-framework/concepts/harness)
 
 The harness gives Phoenix:
 
@@ -276,6 +289,9 @@ Harness-managed execution
         +
 Domain-owned verification
 ```
+
+**Microsoft Learn references:** [Microsoft Agent Framework overview](https://learn.microsoft.com/en-us/agent-framework/overview/)
+and [Agent concepts](https://learn.microsoft.com/en-us/agent-framework/concepts/agents/)
 
 Removing any one of these layers weakens the system. Reasoning without execution cannot
 perform the work. Execution without governance is difficult to trust. Governance without
