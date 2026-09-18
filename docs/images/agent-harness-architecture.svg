@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title description">
+  <title id="title">Agent Harness architecture for verified autonomous code repair</title>
+  <desc id="description">A diagram showing human mission input and model reasoning flowing through Phoenix in the Agent Harness, delegation to four specialists, scoped engineering and browser tools, independent acceptance, telemetry, Telegram, and browser evidence.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#e8eef9"/>
+    </linearGradient>
+    <linearGradient id="harness" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#172554"/>
+      <stop offset="1" stop-color="#1e3a8a"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.16"/>
+    </filter>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#059669"/>
+    </marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#d97706"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#dc2626"/>
+    </marker>
+    <style>
+      .title { font: 700 30px "Segoe UI", Arial, sans-serif; fill: #0f172a; }
+      .subtitle { font: 500 16px "Segoe UI", Arial, sans-serif; fill: #475569; }
+      .heading { font: 700 19px "Segoe UI", Arial, sans-serif; fill: #0f172a; }
+      .body { font: 500 15px "Segoe UI", Arial, sans-serif; fill: #334155; }
+      .small { font: 500 13px "Segoe UI", Arial, sans-serif; fill: #475569; }
+      .white-heading { font: 700 24px "Segoe UI", Arial, sans-serif; fill: #ffffff; }
+      .white-body { font: 500 15px "Segoe UI", Arial, sans-serif; fill: #dbeafe; }
+      .capability { font: 600 14px "Segoe UI", Arial, sans-serif; fill: #e0e7ff; }
+      .box { fill: #ffffff; stroke: #cbd5e1; stroke-width: 2; rx: 16; filter: url(#shadow); }
+      .tool-box { fill: #ecfdf5; stroke: #10b981; stroke-width: 2; rx: 16; filter: url(#shadow); }
+      .accept-box { fill: #fff7ed; stroke: #f59e0b; stroke-width: 2; rx: 16; filter: url(#shadow); }
+      .evidence-box { fill: #f5f3ff; stroke: #8b5cf6; stroke-width: 2; rx: 16; filter: url(#shadow); }
+      .arrow-blue { fill: none; stroke: #2563eb; stroke-width: 3; marker-end: url(#arrow-blue); }
+      .arrow-green { fill: none; stroke: #059669; stroke-width: 3; marker-end: url(#arrow-green); }
+      .arrow-amber { fill: none; stroke: #d97706; stroke-width: 3; marker-end: url(#arrow-amber); }
+      .return-arrow { fill: none; stroke: #dc2626; stroke-width: 3; stroke-dasharray: 8 6; marker-end: url(#arrow-red); }
+    </style>
+  </defs>
+
+  <rect width="1200" height="760" fill="url(#background)"/>
+
+  <text x="600" y="45" text-anchor="middle" class="title">Agent Harness: Managed Autonomous Engineering</text>
+  <text x="600" y="73" text-anchor="middle" class="subtitle">The model reasons; the harness manages execution; application code proves the outcome.</text>
+
+  <rect x="40" y="120" width="190" height="115" class="box"/>
+  <text x="135" y="150" text-anchor="middle" class="heading">Human entry</text>
+  <text x="135" y="178" text-anchor="middle" class="body">CLI or Telegram</text>
+  <text x="135" y="202" text-anchor="middle" class="small">Mission, status, cancel</text>
+
+  <rect x="505" y="100" width="190" height="95" class="box"/>
+  <text x="600" y="132" text-anchor="middle" class="heading">Azure OpenAI</text>
+  <text x="600" y="158" text-anchor="middle" class="body">Reasoning and vision</text>
+  <text x="600" y="180" text-anchor="middle" class="small">No direct environment access</text>
+
+  <rect x="265" y="225" width="670" height="270" rx="24" fill="url(#harness)" filter="url(#shadow)"/>
+  <text x="600" y="260" text-anchor="middle" class="white-heading">Microsoft Agent Framework Agent Harness</text>
+  <text x="600" y="286" text-anchor="middle" class="white-body">Phoenix - HarnessAgent and team coordinator</text>
+
+  <rect x="300" y="315" width="185" height="62" rx="10" fill="#263f86" stroke="#60a5fa"/>
+  <text x="392" y="340" text-anchor="middle" class="capability">Session + history</text>
+  <text x="392" y="361" text-anchor="middle" class="white-body">Todo and agent modes</text>
+
+  <rect x="507" y="315" width="185" height="62" rx="10" fill="#263f86" stroke="#60a5fa"/>
+  <text x="600" y="340" text-anchor="middle" class="capability">Tool-calling loop</text>
+  <text x="600" y="361" text-anchor="middle" class="white-body">Iteration ceilings</text>
+
+  <rect x="715" y="315" width="185" height="62" rx="10" fill="#263f86" stroke="#60a5fa"/>
+  <text x="807" y="340" text-anchor="middle" class="capability">Compaction + memory</text>
+  <text x="807" y="361" text-anchor="middle" class="white-body">Long-running context</text>
+
+  <rect x="300" y="397" width="185" height="62" rx="10" fill="#263f86" stroke="#60a5fa"/>
+  <text x="392" y="422" text-anchor="middle" class="capability">Agent Skills</text>
+  <text x="392" y="443" text-anchor="middle" class="white-body">Operating procedures</text>
+
+  <rect x="507" y="397" width="185" height="62" rx="10" fill="#263f86" stroke="#60a5fa"/>
+  <text x="600" y="422" text-anchor="middle" class="capability">Background agents</text>
+  <text x="600" y="443" text-anchor="middle" class="white-body">Typed task lifecycle</text>
+
+  <rect x="715" y="397" width="185" height="62" rx="10" fill="#263f86" stroke="#60a5fa"/>
+  <text x="807" y="422" text-anchor="middle" class="capability">Approvals + telemetry</text>
+  <text x="807" y="443" text-anchor="middle" class="white-body">Policy and evidence</text>
+
+  <rect x="970" y="215" width="190" height="220" class="box"/>
+  <text x="1065" y="245" text-anchor="middle" class="heading">Specialist agents</text>
+  <rect x="995" y="265" width="140" height="30" rx="8" fill="#fee2e2"/>
+  <text x="1065" y="286" text-anchor="middle" class="body">Ember - frontend</text>
+  <rect x="995" y="305" width="140" height="30" rx="8" fill="#dbeafe"/>
+  <text x="1065" y="326" text-anchor="middle" class="body">Forge - backend</text>
+  <rect x="995" y="345" width="140" height="30" rx="8" fill="#dcfce7"/>
+  <text x="1065" y="366" text-anchor="middle" class="body">Sentinel - QA</text>
+  <rect x="995" y="385" width="140" height="30" rx="8" fill="#fef3c7"/>
+  <text x="1065" y="406" text-anchor="middle" class="body">Scroll - docs</text>
+
+  <rect x="40" y="550" width="285" height="145" class="tool-box"/>
+  <text x="182" y="580" text-anchor="middle" class="heading">Scoped engineering tools</text>
+  <text x="182" y="608" text-anchor="middle" class="body">Read and exact-match edit</text>
+  <text x="182" y="632" text-anchor="middle" class="body">Allowlisted commands and HTTP</text>
+  <text x="182" y="656" text-anchor="middle" class="body">Playwright computer use</text>
+  <text x="182" y="680" text-anchor="middle" class="small">Code-enforced workspace boundaries</text>
+
+  <rect x="385" y="550" width="350" height="145" class="accept-box"/>
+  <text x="560" y="580" text-anchor="middle" class="heading">Independent acceptance</text>
+  <text x="560" y="608" text-anchor="middle" class="body">Source + HTTP + browser + Jest + docs</text>
+  <text x="560" y="636" text-anchor="middle" class="body">Pass: verified completion</text>
+  <text x="560" y="660" text-anchor="middle" class="body">Fail: evidence returns for correction</text>
+  <text x="560" y="682" text-anchor="middle" class="small">The model cannot override this decision</text>
+
+  <rect x="795" y="550" width="365" height="145" class="evidence-box"/>
+  <text x="977" y="580" text-anchor="middle" class="heading">Evidence and audience experience</text>
+  <text x="977" y="608" text-anchor="middle" class="body">Application Insights - durable traces</text>
+  <text x="977" y="632" text-anchor="middle" class="body">Browser - visible repair evidence</text>
+  <text x="977" y="656" text-anchor="middle" class="body">Telegram - verified result</text>
+  <text x="977" y="680" text-anchor="middle" class="small">Presentation never controls acceptance</text>
+
+  <path d="M230 177 C280 177, 285 265, 330 265" class="arrow-blue"/>
+  <path d="M600 195 L600 220" class="arrow-blue"/>
+  <path d="M935 325 L965 325" class="arrow-blue"/>
+  <path d="M490 495 C440 520, 300 510, 250 545" class="arrow-green"/>
+  <path d="M600 495 L575 545" class="arrow-amber"/>
+  <path d="M710 495 C760 520, 845 515, 900 545" class="arrow-blue"/>
+  <path d="M325 622 L380 622" class="arrow-green"/>
+  <path d="M735 622 L790 622" class="arrow-amber"/>
+  <path d="M430 550 C350 520, 225 500, 225 455 C225 420, 245 390, 260 370" class="return-arrow"/>
+
+  <text x="600" y="735" text-anchor="middle" class="subtitle">Guided repair today; reusable foundation for more open-ended autonomous engineering.</text>
+</svg>

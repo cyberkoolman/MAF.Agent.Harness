@@ -1,0 +1,16 @@
+{
+  "users": [
+    { "id": 1, "name": "Phoenix", "role": "Team Lead", "email": "phoenix@openclaw.dev", "avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=Phoenix" },
+    { "id": 2, "name": "Ember", "role": "Frontend Dev", "email": "ember@openclaw.dev", "avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=Ember" },
+    { "id": 3, "name": "Forge", "role": "Backend Dev", "email": "forge@openclaw.dev", "avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=Forge" },
+    { "id": 4, "name": "Sentinel", "role": "QA Lead", "email": "sentinel@openclaw.dev", "avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=Sentinel" },
+    { "id": 5, "name": "Scroll", "role": "Tech Writer", "email": "scroll@openclaw.dev", "avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=Scroll" }
+  ],
+  "tasks": [
+    { "id": 1, "title": "Fix navigation component", "assignee": 2, "status": "open", "priority": "high" },
+    { "id": 2, "title": "Fix /api/users endpoint", "assignee": 3, "status": "open", "priority": "critical" },
+    { "id": 3, "title": "Write integration tests", "assignee": 4, "status": "blocked", "priority": "high" },
+    { "id": 4, "title": "Update README and API docs", "assignee": 5, "status": "blocked", "priority": "medium" },
+    { "id": 5, "title": "Deploy to staging", "assignee": 1, "status": "blocked", "priority": "high" }
+  ]
+}

@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>MAF.RPTeam</RootNamespace>
+    <AssemblyName>rpteam</AssemblyName>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <!-- Lets `dotnet user-secrets set` hold local endpoint and deployment settings outside the repo. -->
+    <UserSecretsId>maf-rpteam-mission-control</UserSecretsId>
+    <!-- CA2007: no SynchronizationContext in a console host.
+         OPENAI001/MEAI001/MAAI001: experimental-API diagnostics in the AI stack. -->
+    <NoWarn>$(NoWarn);CA2007;OPENAI001;MEAI001;MAAI001</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Monitor.OpenTelemetry.Exporter" Version="1.9.0" />
+    <PackageReference Include="Microsoft.Agents.AI" Version="1.18.0" />
+    <PackageReference Include="Microsoft.Agents.AI.Harness" Version="1.18.0" />
+    <PackageReference Include="Microsoft.Extensions.AI" Version="10.9.0" />
+    <PackageReference Include="Azure.AI.OpenAI" Version="2.9.0-beta.1" />
+    <PackageReference Include="Azure.Identity" Version="1.21.0" />
+    <PackageReference Include="Microsoft.Extensions.AI.OpenAI" Version="10.9.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.1" />
+    <PackageReference Include="Microsoft.Playwright" Version="1.62.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="skills/**/*" CopyToOutputDirectory="PreserveNewest" />
+    <!-- Config is read from AppContext.BaseDirectory, so the local override has to be
+         copied too or it is silently ignored. Condition keeps the build working when it
+         does not exist. It stays out of git via .gitignore. -->
+    <None Include="appsettings.Local.json"
+          Condition="Exists('appsettings.Local.json')"
+          CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

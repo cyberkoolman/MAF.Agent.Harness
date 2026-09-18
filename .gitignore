@@ -1,0 +1,15 @@
+bin/
+obj/
+node_modules/
+coverage/
+build/
+agent-file-memory/
+.playwright/
+*.log
+.env
+.env.*
+*.user
+appsettings.Development.json
+appsettings.Local*
+appsettings.Local.json
+.vs/

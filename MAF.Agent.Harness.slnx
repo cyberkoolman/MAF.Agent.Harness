@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/MAF.RPTeam.Telegram/MAF.RPTeam.Telegram.csproj" />
+    <Project Path="src/MAF.RPTeam/MAF.RPTeam.csproj" />
+  </Folder>
+</Solution>
