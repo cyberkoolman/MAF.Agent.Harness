@@ -81,6 +81,46 @@ In short:
 > A harness provides **the runtime capabilities, controls, and lifecycle for executing
 > agent work reliably**.
 
+### Venn diagram: what belongs to each and what intersects
+
+```text
+             AGENT WORKFLOW                         AGENT HARNESS
+        .-----------------------.               .-----------------------.
+      .'                         '.           .'                         '.
+     /  Business sequence          \_________/   Session and history      \
+    /   Branching and routing       \       /    Context compaction        \
+   |    Step and handoff order       \     /     Tool invocation pipeline   |
+   |    Domain checkpoints            \   /      Skills, memory, and todos   |
+   |    Terminal process state         \ /       Delegated-task lifecycle    |
+   |                              .-----X-----.                              |
+   |                             /   SHARED    \                             |
+   |                            | Agents/tasks  |                            |
+   |                            | Tool-enabled  |                            |
+   |                            | State handoff |                            |
+   |                            | Corrections   |                            |
+   |                            | Policy hooks  |                            |
+   |                            | Observability |                            |
+    \                            \             /                            /
+     \                            '-----------'                            /
+      '.                                                                   .'
+        '-----------------------'   +   '-------------------------------'
+                         Used together in an agentic system
+```
+
+| Workflow only | Intersection: both participate | Harness only |
+|---|---|---|
+| Defines the business or task sequence | Agents perform tasks within a coordinated process | Preserves the agent's conversation and session history |
+| Chooses branches, routes, and handoff order | Tools may be used by workflow steps or harness-managed agents | Compacts long context across model interactions |
+| Defines which step follows success, failure, or approval | State and results move between tasks and agents | Runs the model/tool invocation pipeline |
+| Establishes domain checkpoints and terminal workflow states | Failures can trigger retries or correction paths | Loads reusable skills, memory, todos, and modes |
+| Coordinates non-agent steps, services, people, and agents | Policy, approvals, and telemetry can span both layers | Manages delegated-agent task IDs, status, and lifecycle |
+| Expresses process-level service-level objectives | Both contribute evidence used by domain verification | Applies reusable runtime limits, scopes, and middleware |
+
+The intersection does not mean both layers implement the same feature in the same way. For
+example, a workflow may decide **when** approval is required, while the harness enforces
+approval middleware around the agent's tool call. A workflow may decide **when** to
+delegate, while the harness manages the delegated agent's execution and status.
+
 | Dimension | Agent workflow | Agent Harness |
 |---|---|---|
 | **Primary purpose** | Orchestrate a business or task process | Operate an agent safely and consistently |
