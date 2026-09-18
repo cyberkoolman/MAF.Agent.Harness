@@ -83,29 +83,7 @@ In short:
 
 ### Venn diagram: what belongs to each and what intersects
 
-```text
-             AGENT WORKFLOW                         AGENT HARNESS
-        .-----------------------.               .-----------------------.
-      .'                         '.           .'                         '.
-     /  Business sequence          \_________/   Session and history      \
-    /   Branching and routing       \       /    Context compaction        \
-   |    Step and handoff order       \     /     Tool invocation pipeline   |
-   |    Domain checkpoints            \   /      Skills, memory, and todos   |
-   |    Terminal process state         \ /       Delegated-task lifecycle    |
-   |                              .-----X-----.                              |
-   |                             /   SHARED    \                             |
-   |                            | Agents/tasks  |                            |
-   |                            | Tool-enabled  |                            |
-   |                            | State handoff |                            |
-   |                            | Corrections   |                            |
-   |                            | Policy hooks  |                            |
-   |                            | Observability |                            |
-    \                            \             /                            /
-     \                            '-----------'                            /
-      '.                                                                   .'
-        '-----------------------'   +   '-------------------------------'
-                         Used together in an agentic system
-```
+![Venn diagram comparing agent workflow, shared concerns, and Agent Harness responsibilities](images/workflow-vs-agent-harness-venn.svg)
 
 | Workflow only | Intersection: both participate | Harness only |
 |---|---|---|
