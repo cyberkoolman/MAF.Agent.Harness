@@ -3,12 +3,13 @@
 ## Executive summary
 
 An **Agent Harness** is the runtime and governance layer that surrounds an AI model and
-turns it into a dependable software agent.
+turns it into a dependable AI agent.
 
-A model can understand a request, reason about source code, and suggest the next action.
-By itself, however, it does not provide durable state, safe tool execution, delegation,
-approval controls, observability, or an objective definition of completion. The Agent
-Harness supplies those operational capabilities.
+A model can understand a goal, reason about the information available to it, and suggest
+the next action. For example, it might analyze documents, customer requests, operational
+data, a user interface, or source code. By itself, however, it does not provide durable
+state, safe tool execution, delegation, approval controls, observability, or an objective
+definition of completion. The Agent Harness supplies those operational capabilities.
 
 ```text
 +------------------------+
@@ -30,8 +31,8 @@ Harness supplies those operational capabilities.
                          |
                          v
 +--------------------------------------------------+
-| Application-owned acceptance                    |
-| Tests | APIs | browser | policy | evidence       |
+| Domain-owned outcome verification               |
+| Rules | policy | checks | evidence               |
 +------------------------+-------------------------+
                          |
                          v
@@ -41,13 +42,13 @@ Harness supplies those operational capabilities.
 The important distinction is:
 
 > The model decides what may need to happen. The harness manages how work happens.
-> Independent acceptance determines whether the result is actually correct.
+> Domain-specific verification determines whether the result is actually correct.
 
 ## Why a model alone is not enough
 
-An AI model normally operates one response at a time. A real engineering mission may
-require dozens of model calls, tool operations, delegated tasks, test runs, and correction
-rounds. Without a harness, an application team must build that coordination plumbing
+An AI model normally operates one response at a time. A real task may require dozens of
+model calls, tool operations, delegated tasks, validation checks, and correction rounds.
+Without a harness, the team building the solution must create that coordination plumbing
 themselves.
 
 Common gaps include:
@@ -62,9 +63,12 @@ Common gaps include:
 | Actions require policy controls | Tool approvals and scoped capabilities |
 | Loops could continue indefinitely | Iteration, task, time, and budget limits |
 | Progress is difficult to audit | OpenTelemetry traces and structured task state |
-| A persuasive answer may be mistaken for success | Application-owned acceptance |
+| A persuasive answer may be mistaken for success | Domain-owned outcome verification |
 
-## What the harness does in this repository
+## Example: what the harness does in this repository
+
+The concepts above are domain-neutral. This repository applies them to one specific
+example: autonomous software repair.
 
 Phoenix is the coordinator and is created as a Microsoft Agent Framework
 `HarnessAgent`:
@@ -100,19 +104,23 @@ separation makes the mission easier to understand, constrain, and audit.
 The harness is not:
 
 - the AI model;
-- a substitute for tests;
-- a guarantee that generated code is correct;
+- a substitute for domain validation, such as tests, policy checks, or human review;
+- a guarantee that the generated result is correct;
 - the business definition of success;
 - permission to access every file or system; or
 - a replacement for human accountability.
 
-This repository therefore keeps the final acceptance contract outside the harness. The
-application independently checks source code, HTTP responses, Jest results, browser
-rendering, browser errors, screenshots, and documentation.
+Every implementation still needs a domain-specific way to verify outcomes. For example, a
+customer-service workflow might verify policy compliance and case resolution, while a
+document-processing workflow might verify required fields and approval status.
+
+In this repository's software-repair example, the application keeps the final acceptance
+contract outside the harness. It independently checks source code, HTTP responses, Jest
+results, browser rendering, browser errors, screenshots, and documentation.
 
 A specialist task reaching `completed` means the specialist finished its assigned work.
-It does **not** mean the application is fixed. Only the acceptance gate can make that
-decision.
+It does **not** necessarily mean the real-world outcome is correct. In this example, only
+the software acceptance gate can decide that the application is fixed.
 
 ## Business benefits
 
@@ -141,10 +149,11 @@ correlated under one mission trace.
 The system separates an agent's claim from verifiable evidence. Failed acceptance can
 return precise evidence for a bounded correction round.
 
-### Reusable engineering platform
+### Reusable automation platform
 
-The same harness pattern can support code repair, test generation, incident investigation,
-documentation maintenance, migration assistance, or other controlled workflows.
+The same harness pattern can support many controlled workflows. Examples include customer
+service, document processing, research, compliance review, incident investigation,
+operations, code repair, test generation, and documentation maintenance.
 
 ## Agent framework, agent, and harness
 
@@ -156,18 +165,18 @@ These terms are related but not interchangeable:
 | **Agent** | A model configured with instructions, identity, and tools |
 | **Agent framework** | APIs and abstractions used to build agents and workflows |
 | **Agent Harness** | The managed runtime pipeline around an agent: state, tools, skills, delegation, policy, limits, and telemetry |
-| **Application acceptance** | Domain-specific proof that the agent's result satisfies the real requirement |
+| **Outcome verification** | Domain-specific proof that the agent's result satisfies the real requirement |
 
 ## Practical design principle
 
-Reliable autonomous engineering requires all three layers:
+Reliable autonomous systems require all three layers:
 
 ```text
 Model intelligence
         +
 Harness-managed execution
         +
-Application-owned verification
+Domain-owned verification
 ```
 
 Removing any one of these layers weakens the system. Reasoning without execution cannot
