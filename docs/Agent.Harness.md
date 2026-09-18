@@ -2,14 +2,28 @@
 
 ## Executive summary
 
-An **Agent Harness** is the runtime and governance layer that surrounds an AI model and
-turns it into a dependable AI agent.
+An **Agent Harness is the runtime scaffolding that wraps a chat client—the application's
+connection to an AI model—and equips it to operate as an agent over long, multi-step
+tasks**.
 
 A model can understand a goal, reason about the information available to it, and suggest
-the next action. For example, it might analyze documents, customer requests, operational
-data, a user interface, or source code. By itself, however, it does not provide durable
-state, safe tool execution, delegation, approval controls, observability, or an objective
-definition of completion. The Agent Harness supplies those operational capabilities.
+the next action. The harness adds the working structure the model needs to keep going:
+planning and execution modes, todo tracking, context management, memory, file and tool
+access, approval behavior, delegation, limits, and observability.
+
+Instead of every application assembling these pieces independently, it can create a
+harness agent and configure the capabilities it needs.
+
+```text
+Chat client / model access + Agent Harness scaffolding
+                         = an agent equipped to perform managed work
+```
+
+The word **scaffolding** is important. A construction scaffold does not design the
+building or decide whether the finished building satisfies its owner. It provides the
+supporting structure that lets people work safely, repeatedly, and at greater scale.
+Likewise, an Agent Harness does not replace model reasoning or domain verification. It
+provides the runtime structure that supports the agent while it works.
 
 ```text
 +------------------------+
@@ -18,15 +32,15 @@ definition of completion. The Agent Harness supplies those operational capabilit
             |
             v
 +------------------------+
-| AI model               |
-| Reason and decide      |
+| AI model               |  Intelligence
+| Understand and reason  |
 +-----------+------------+
             |
             v
 +--------------------------------------------------+
-| Agent Harness                                    |
-| State | tools | skills | delegation | approvals |
-| limits | memory | telemetry | lifecycle          |
+| Agent Harness scaffolding                        |
+| Plan/execute | todos | context | memory | tools  |
+| approvals | delegation | limits | telemetry      |
 +------------------------+-------------------------+
                          |
                          v
@@ -39,33 +53,39 @@ definition of completion. The Agent Harness supplies those operational capabilit
               Verified result or correction
 ```
 
-**Microsoft Learn reference:** [Agent Harness](https://learn.microsoft.com/en-us/agent-framework/concepts/harness)
+**Microsoft Learn references:** [Create a harness agent](https://learn.microsoft.com/en-us/agent-framework/get-started/harness)
+and [Agent Harness concepts and architecture](https://learn.microsoft.com/en-us/agent-framework/concepts/harness)
 
 The important distinction is:
 
-> The model decides what may need to happen. The harness manages how work happens.
-> Domain-specific verification determines whether the result is actually correct.
+> The model supplies intelligence. The harness supplies the scaffolding for sustained,
+> managed execution. Domain-specific verification determines whether the outcome is
+> actually correct.
 
-## Why a model alone is not enough
+## What the scaffolding provides
 
-An AI model normally operates one response at a time. A real task may require dozens of
+An AI model normally produces one response at a time. A real task may require dozens of
 model calls, tool operations, delegated tasks, validation checks, and correction rounds.
-Without a harness, the team building the solution must create that coordination plumbing
-themselves.
+The harness provides reusable scaffolding for maintaining that work across time.
 
-Common gaps include:
-
-| Model-only gap | Harness capability |
+| Scaffolding component | What it enables |
 |---|---|
-| No durable mission state | Session and history persistence |
-| Context grows until it becomes unmanageable | Context compaction |
-| Tool calls need execution and validation | Function invocation pipeline |
-| Complex work needs specialists | Background-agent delegation |
-| Instructions must be repeatable | Agent Skills |
-| Actions require policy controls | Tool approvals and scoped capabilities |
-| Loops could continue indefinitely | Iteration, task, time, and budget limits |
-| Progress is difficult to audit | OpenTelemetry traces and structured task state |
-| A persuasive answer may be mistaken for success | Domain-owned outcome verification |
+| **Planning and execution modes** | Separates deciding what to do from carrying out the work |
+| **Todo tracking** | Keeps a visible, durable representation of remaining work |
+| **Context compaction** | Preserves important information without allowing history to grow without bound |
+| **File memory** | Carries useful working knowledge beyond one model response |
+| **File and tool access** | Allows the agent to act through application-approved capabilities |
+| **Tool approvals** | Applies human or policy authorization before selected actions |
+| **Background agents** | Delegates specialized or parallel work and tracks its lifecycle |
+| **Bounded looping** | Lets the agent continue multi-step work within explicit limits |
+| **Observability** | Records model, tool, delegation, timing, and failure activity |
+| **Session persistence** | Maintains the agent's state across multiple interactions |
+
+Without this scaffolding, the team building an agentic application must assemble and
+integrate these runtime concerns itself. The harness makes them available as a coherent
+agent runtime that can be configured rather than rebuilt for every solution.
+
+**Microsoft Learn reference:** [Create a harness agent](https://learn.microsoft.com/en-us/agent-framework/get-started/harness)
 
 ## Agent workflow versus Agent Harness
 
@@ -187,7 +207,7 @@ var phoenix = chatClient.AsHarnessAgent(phoenixOptions);
 **Microsoft Learn references:** [Create a harness agent with `AsHarnessAgent`](https://learn.microsoft.com/en-us/agent-framework/get-started/harness)
 and [Agent Harness concepts and architecture](https://learn.microsoft.com/en-us/agent-framework/concepts/harness)
 
-The harness gives Phoenix:
+The harness gives Phoenix the scaffolding used by this example:
 
 - a durable session across the repair mission;
 - function invocation and a bounded model/tool loop;
@@ -275,7 +295,7 @@ These terms are related but not interchangeable:
 | **Agent** | A model configured with instructions, identity, and tools |
 | **Agent framework** | APIs and abstractions used to build agents and workflows |
 | **Agent workflow** | Application-defined orchestration of steps, decisions, agents, handoffs, and outcomes |
-| **Agent Harness** | The managed runtime pipeline around an agent: state, tools, skills, delegation, policy, limits, and telemetry |
+| **Agent Harness** | The runtime scaffolding around a model or agent: planning, state, context, memory, tools, skills, delegation, policy, limits, and telemetry |
 | **Outcome verification** | Domain-specific proof that the agent's result satisfies the real requirement |
 
 ## Practical design principle
